@@ -12,7 +12,7 @@ This is essentially the base calendar code use in my [Talk Calendar project](htt
 ## Core Features
 
 * built with C and GTK 4.8.3 (Debian 12)
-* uses a grid of day labels for each month
+*  uses a grid of day labels for each month
 * buttons for changing month and year
 * calendar visual colour marks for days with events and holidays
 * go to current date (demonstrated by using home key)
@@ -111,8 +111,7 @@ g_signal_connect(CUSTOM_CALENDAR(calendar), "next-month", G_CALLBACK(callbk_cale
 g_signal_connect(CUSTOM_CALENDAR(calendar), "prev-month", G_CALLBACK(callbk_calendar_prev_month), label_date);
 g_signal_connect(CUSTOM_CALENDAR(calendar), "next-year", G_CALLBACK(callbk_calendar_next_year), label_date);
 g_signal_connect(CUSTOM_CALENDAR(calendar), "prev-year", G_CALLBACK(callbk_calendar_prev_year), label_date);
-```
-		
+```		
 To add a visual colour mark for a day you use the following function.
 
 ```
@@ -151,15 +150,12 @@ To update the calendar you use the following function.
 ```
 custom_calendar_update(CUSTOM_CALENDAR(calendar));
 ```
-##Testing
-
-I have tested GKK4 Simple Calendar using the Debian 12 GNOME, Debian 12 Xfce and Debian 12 Budgie.
 
 ## Roadmap
 
-* Add a property to allow the colour to be changed for today
-* Add a property to allow the colour to be changed for marking a day
-* Add a property to allow the colour to be changed for marking a holiday
+* Add a property to change the colour for marking today
+* Add a property to change the colour for marking a day
+* Add a property to change the colour for marking a holiday
 
 I will add more features as the project rolls along.
 
