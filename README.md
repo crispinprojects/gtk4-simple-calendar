@@ -4,10 +4,9 @@ A simple GTK4 calendar which uses a grid of day labels for each month. It has be
 
 ![](gtk4-simple-calendar.png)
 
-GTK Simple Calendar does not use libAdwaita or css for styling. It uses Pango attributes and markup for adding some style and colour to the calendar. Pango is the text layout system used by GDK and GTK.
+GTK Simple Calendar uses Pango attributes and markup for adding some style and colour to the calendar. Pango is the text layout system used by GDK and GTK. It does not use libadwaita style classes or css for styling.
 
-This is essentially the base calendar code use in my [Talk Calendar project](https://github.com/crispinprojects/talkcalendar).
-
+This is essentially the base calendar code used in my [Talk Calendar](https://github.com/crispinprojects/talkcalendar) application.
 
 ## Core Features
 
@@ -103,7 +102,7 @@ next-year
 prev-year
 ```
 
-An example of how to use these signal to connect call backs in the user program (see main.c) is shown below. 
+An example of how to use these signals to connect to call backs in the user program (see main.c) is shown below. 
 
 ```
 g_signal_connect(CUSTOM_CALENDAR(calendar), "day-selected", G_CALLBACK(callbk_calendar_day_selected), label_date);
@@ -138,7 +137,7 @@ In this example day 25 is marked as a holiday which would be Christmas day in De
 custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
 ```
 
-GTK4 Simple Claendar has properties which allow the colours for the current day, a marked day and a holiday can be changed as shown below.
+GTK4 Simple Claendar has properties which allow the colours for the current day, a marked day and a holiday to be changed as shown below.
 
 ```
 g_object_set(calendar, "todaycolour", "red", NULL);
@@ -146,7 +145,7 @@ g_object_set(calendar, "eventcolour", "purple", NULL);
 g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
 ```
 
-You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp). Most of the major colour names have been implemented (not all tested) as shown below which should be sufficient if using either a dark or light legacy desktop colour scheme.
+You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp). Most of the major colour names have been implemented (not all tested) as shown below which should be sufficient if using either a dark or light legacy desktop colour theme.
 
 Red HTML colour names:
 ```
@@ -336,11 +335,9 @@ To update the calendar you use the following function.
 custom_calendar_update(CUSTOM_CALENDAR(calendar));
 ```
 
+## Testing
 
-##Testing
-
-I have tested GKK4 Simple Calendar using  Debian 12 Xfce, Debian 12 Budgie and Debian 12 GNOME.
-
+I have tested GKK4 Simple Calendar using Debian 12 Xfce, Debian 12 Budgie and Debian 12 GNOME.
 
 ## Versioning
 
