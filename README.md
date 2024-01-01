@@ -138,7 +138,191 @@ In this example day 25 is marked as a holiday which would be Christmas day in De
 custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
 ```
 
-Currently, the colours for the current day, a marked day and a holiday are fixed. The current day is coloured red. A marked day is coloured brown and a holiday is coloured blue. I will add properties to allow these to be changed in future updates (see  Roadmap below).
+GTK4 Simple Claendar has properties which allow the colours for the current day, a marked day and a holiday can be changed as shown below.
+
+```
+g_object_set(calendar, "todaycolour", "red", NULL);
+g_object_set(calendar, "eventcolour", "purple", NULL);
+g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
+```
+
+You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp). Most of the major colour names have been implemented (not all tested) as shown below which should be sufficient if using either a dark or light legacy desktop colour scheme.
+
+Red HTML colour names:
+```
+indianred 	
+lightcoral 	
+salmon 	
+darksalmon 	
+lightsalmon 	
+crimson 	
+red 	
+firebrick 	
+darkred 
+```
+Pink HTML colour names:
+```
+pink 	
+lightpink 	
+hotpink 	
+deeppink 	
+mediumvioletred 	
+palevioletred
+```
+Orange HTML colour names:
+```
+lightsalmon 	
+coral 	
+tomato 	
+orangered 
+darkorange 
+orange
+```
+Yellow HTML colour names:
+```
+gold 	
+yellow 	
+lightyellow 	
+lemonchiffon 	
+lightgoldenrodyellow 	
+papayawhip 	
+moccasin 	
+peachpuff 	
+palegoldenrod 	
+khaki 	
+darkkhaki 
+```
+Purple HTML colour names:
+```
+lavender 	
+thistle 	
+plum 	
+violet 	
+orchid 	
+fuchsia 	
+magenta 	
+mediumorchid 	
+mediumpurple 	
+rebeccapurple 	
+blueviolet 	
+darkviolet 	
+darkorchid 	
+darkmagenta 	
+purple 	
+indigo 
+slateblue 	
+darkslateblue 
+mediumslateblue
+```
+Green HTML colour names:
+```
+greenyellow 	
+chartreuse 	
+lawngreen 	
+lime 	
+limegreen 	
+palegreen 	
+lightgreen 	
+mediumspringgreen 	
+springgreen 	
+mediumseagreen 
+seagreen 	
+forestgreen 
+green 
+darkgreen 
+yellowgreen 
+olivedrab 
+olive 
+darkolivegreen 	
+mediumaquamarine 
+darkseagreen 
+lightseagreen
+darkcyan 
+teal 
+```
+Blue HTML colour names:
+```
+aqua 	
+cyan 	
+lightcyan 	
+paleturquoise 	
+aquamarine 	
+turquoise 	
+mediumturquoise 
+darkturquoise 	
+cadetblue 	
+steelblue 	
+lightsteelblue 	
+powderblue 	
+lightblue 	
+skyblue 	
+lightskyblue 	
+deepskyblue 	
+dodgerblue 	
+cornflowerblue 	
+mediumslateblue 
+royalblue 	
+blue 	
+mediumblue 	
+darkblue 
+navy 	
+midnightblue 
+```
+Brown HTML colour names:
+```
+cornsilk 	
+blanchedalmond 	
+bisque 
+navajowhite 
+wheat 	
+burlywood 
+tan 
+rosybrown 
+sandybrown 
+goldenrod 
+darkgoldenrod 
+peru 
+chocolate 
+saddlebrown 
+sienna 	
+brown 	
+maroon 
+```
+White HTML colour names:
+```
+white 	
+snow 	
+honeydew 	
+mintcream 	
+azure 	
+aliceblue 	
+ghostwhite 	
+whitesmoke 
+seashell 	
+beige 	
+oldlace 
+floralwhite 	
+ivory 	
+antiquewhite 	
+linen 
+lavenderblush 	
+mistyrose 
+```
+Grey HTML colour names:
+```
+gainsboro 	
+lightgray 	
+silver 	
+darkgray 	
+gray 	
+dimgray 	
+lightslategray 	
+slategray 	
+darkslategray 	
+black 	
+```
+Note the American spelling of grey (gray).
+
 
 To reset the calendar to the current day you use the following function.
 
@@ -151,17 +335,12 @@ To update the calendar you use the following function.
 ```
 custom_calendar_update(CUSTOM_CALENDAR(calendar));
 ```
+
+
 ##Testing
 
-I have tested GKK4 Simple Calendar using the Debian 12 GNOME, Debian 12 Xfce and Debian 12 Budgie.
+I have tested GKK4 Simple Calendar using  Debian 12 Xfce, Debian 12 Budgie and Debian 12 GNOME.
 
-## Roadmap
-
-* Add a property to allow the colour to be changed for today
-* Add a property to allow the colour to be changed for marking a day
-* Add a property to allow the colour to be changed for marking a holiday
-
-I will add more features as the project rolls along.
 
 ## Versioning
 
@@ -178,6 +357,8 @@ GTK4 Simple Calendar is licensed under LGPL v2.1. GTK is released under the term
 ## Project Status
 
 Active.
+
+I will add more features and improve the calendar as the project rolls along.
 
 ## Acknowledgements
 

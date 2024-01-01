@@ -278,6 +278,11 @@ static void activate (GtkApplication *app, gpointer  user_data)
 	//Create calendar
 	calendar = custom_calendar_new();
 	
+	g_object_set(calendar, "todaycolour", "red", NULL);
+	g_object_set(calendar, "eventcolour", "purple", NULL);
+	g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
+	
+	
 	m_day = custom_calendar_get_day(CUSTOM_CALENDAR(calendar));
 	m_month = custom_calendar_get_month(CUSTOM_CALENDAR(calendar));
 	m_year = custom_calendar_get_year(CUSTOM_CALENDAR(calendar));
