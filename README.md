@@ -145,7 +145,7 @@ g_object_set(calendar, "eventcolour", "purple", NULL);
 g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
 ```
 
-You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp). Most of the major colour names have been implemented (not all tested) as shown below which should be sufficient if using either a dark or light legacy desktop colour theme.
+You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp) and shown below which should be sufficient if using either a dark or light legacy desktop colour theme.
 
 Red HTML colour names:
 ```
