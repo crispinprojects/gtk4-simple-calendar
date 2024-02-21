@@ -4,15 +4,14 @@ A simple GTK4 calendar which uses a grid of day labels for each month. It has be
 
 ![](gtk4-simple-calendar.png)
 
-GTK Simple Calendar does not use libAdwaita or css for styling. It uses Pango attributes and markup for adding some style and colour to the calendar. Pango is the text layout system used by GDK and GTK.
+GTK Simple Calendar now uses CSS for styling using the Gtk4 gtk_widget_add_css_class and gtk_widget_remove_css_class functions. 
 
-This is essentially the base calendar code use in my [Talk Calendar project](https://github.com/crispinprojects/talkcalendar).
-
+This is essentially the base calendar code used in my [Talk Calendar](https://github.com/crispinprojects/talkcalendar) application.
 
 ## Core Features
 
 * built with C and GTK 4.8.3 (Debian 12)
-*  uses a grid of day labels for each month
+* uses a grid of day labels for each month
 * buttons for changing month and year
 * calendar visual colour marks for days with events and holidays
 * go to current date (demonstrated by using home key)
@@ -30,9 +29,11 @@ or double click on the "calendar" file. The calendar file must have executable p
 
 ## Build From Source
 
-The C source code for the Talk Calendar project is provided in the src directory.
+The C source code for the GTK4 Calendar project is provided in the src directory.
 
 [Geany](https://www.geany.org/) can be used as a source code editor for opening, viewing and then compiling the Calendar C code. Geany is lightweight and has an integrated terminal for building the application.
+
+### Building on Debian 12 (GNOME, Budgie Desktops), Ubuntu GNOME (22.04, 23.10 onwards) and Raspberry Pi5 OS
 
 You need the GTK4 development libraries and the gcc compiler. The code has been compiled using GTK 4.8.3 amd64 (Debian 12 Bookworm). To determine which version of GTK4 is running on a Linux system use the following terminal command.
 
@@ -43,15 +44,15 @@ dpkg -l | grep libgtk*
 With both  Debian Bookworm and Ubuntu and you need to install the following packages to compile GTK4 Simple Calendar.
 
 ```
-apt install build-essential
-apt install libgtk-4-dev
+sudo apt install build-essential
+sudo apt install libgtk-4-dev
 
 ```
 
 The package:
 
 ```
-apt install libglib2.0-dev
+sudo apt install libglib2.0-dev
 
 ```
 
@@ -103,7 +104,7 @@ next-year
 prev-year
 ```
 
-An example of how to use these signal to connect call backs in the user program (see main.c) is shown below. 
+An example of how to use these signals to connect to call backs in the user program (see main.c) is shown below. 
 
 ```
 g_signal_connect(CUSTOM_CALENDAR(calendar), "day-selected", G_CALLBACK(callbk_calendar_day_selected), label_date);
@@ -111,7 +112,8 @@ g_signal_connect(CUSTOM_CALENDAR(calendar), "next-month", G_CALLBACK(callbk_cale
 g_signal_connect(CUSTOM_CALENDAR(calendar), "prev-month", G_CALLBACK(callbk_calendar_prev_month), label_date);
 g_signal_connect(CUSTOM_CALENDAR(calendar), "next-year", G_CALLBACK(callbk_calendar_next_year), label_date);
 g_signal_connect(CUSTOM_CALENDAR(calendar), "prev-year", G_CALLBACK(callbk_calendar_prev_year), label_date);
-```		
+```
+		
 To add a visual colour mark for a day you use the following function.
 
 ```
@@ -137,7 +139,191 @@ In this example day 25 is marked as a holiday which would be Christmas day in De
 custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
 ```
 
-Currently, the colours for the current day, a marked day and a holiday are fixed. The current day is coloured red. A marked day is coloured brown and a holiday is coloured blue. I will add properties to allow these to be changed in future updates (see  Roadmap below).
+GTK4 Simple Claendar has properties which allow the colours for the current day, a marked day and a holiday to be changed as shown below.
+
+```
+g_object_set(calendar, "todaycolour", "red", NULL);
+g_object_set(calendar, "eventcolour", "purple", NULL);
+g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
+```
+
+You use HTML colour names when changing colours. A list of HTML colour names can be found [here](https://www.w3schools.com/tags/ref_colornames.asp) and shown below which should be sufficient if using either a dark or light legacy desktop colour theme.
+
+Red HTML colour names:
+```
+indianred 	
+lightcoral 	
+salmon 	
+darksalmon 	
+lightsalmon 	
+crimson 	
+red 	
+firebrick 	
+darkred 
+```
+Pink HTML colour names:
+```
+pink 	
+lightpink 	
+hotpink 	
+deeppink 	
+mediumvioletred 	
+palevioletred
+```
+Orange HTML colour names:
+```
+lightsalmon 	
+coral 	
+tomato 	
+orangered 
+darkorange 
+orange
+```
+Yellow HTML colour names:
+```
+gold 	
+yellow 	
+lightyellow 	
+lemonchiffon 	
+lightgoldenrodyellow 	
+papayawhip 	
+moccasin 	
+peachpuff 	
+palegoldenrod 	
+khaki 	
+darkkhaki 
+```
+Purple HTML colour names:
+```
+lavender 	
+thistle 	
+plum 	
+violet 	
+orchid 	
+fuchsia 	
+magenta 	
+mediumorchid 	
+mediumpurple 	
+rebeccapurple 	
+blueviolet 	
+darkviolet 	
+darkorchid 	
+darkmagenta 	
+purple 	
+indigo 
+slateblue 	
+darkslateblue 
+mediumslateblue
+```
+Green HTML colour names:
+```
+greenyellow 	
+chartreuse 	
+lawngreen 	
+lime 	
+limegreen 	
+palegreen 	
+lightgreen 	
+mediumspringgreen 	
+springgreen 	
+mediumseagreen 
+seagreen 	
+forestgreen 
+green 
+darkgreen 
+yellowgreen 
+olivedrab 
+olive 
+darkolivegreen 	
+mediumaquamarine 
+darkseagreen 
+lightseagreen
+darkcyan 
+teal 
+```
+Blue HTML colour names:
+```
+aqua 	
+cyan 	
+lightcyan 	
+paleturquoise 	
+aquamarine 	
+turquoise 	
+mediumturquoise 
+darkturquoise 	
+cadetblue 	
+steelblue 	
+lightsteelblue 	
+powderblue 	
+lightblue 	
+skyblue 	
+lightskyblue 	
+deepskyblue 	
+dodgerblue 	
+cornflowerblue 	
+mediumslateblue 
+royalblue 	
+blue 	
+mediumblue 	
+darkblue 
+navy 	
+midnightblue 
+```
+Brown HTML colour names:
+```
+cornsilk 	
+blanchedalmond 	
+bisque 
+navajowhite 
+wheat 	
+burlywood 
+tan 
+rosybrown 
+sandybrown 
+goldenrod 
+darkgoldenrod 
+peru 
+chocolate 
+saddlebrown 
+sienna 	
+brown 	
+maroon 
+```
+White HTML colour names:
+```
+white 	
+snow 	
+honeydew 	
+mintcream 	
+azure 	
+aliceblue 	
+ghostwhite 	
+whitesmoke 
+seashell 	
+beige 	
+oldlace 
+floralwhite 	
+ivory 	
+antiquewhite 	
+linen 
+lavenderblush 	
+mistyrose 
+```
+Grey HTML colour names:
+```
+gainsboro 	
+lightgray 	
+silver 	
+darkgray 	
+gray 	
+dimgray 	
+lightslategray 	
+slategray 	
+darkslategray 	
+black 	
+```
+Note the American spelling of grey (gray).
+
 
 To reset the calendar to the current day you use the following function.
 
@@ -151,13 +337,12 @@ To update the calendar you use the following function.
 custom_calendar_update(CUSTOM_CALENDAR(calendar));
 ```
 
-## Roadmap
+## Testing
 
-* Add a property to change the colour for marking today
-* Add a property to change the colour for marking a day
-* Add a property to change the colour for marking a holiday
+I have tested GKK4 Simple Calendar using Debian 12 GNOME, Debian 12 Budgie and the latest Ubuntu.
 
-I will add more features as the project rolls along.
+This Calendar has been developed using GTK 4.8 (Debian 12) and so does include functions that I know are going to be depreciated in GTK 4.12 and beyond. One such example is gtk_css_provider_load_from_data which is being depreciated and replaced  with gtk_css_provider_load_from_string.
+
 
 ## Versioning
 
@@ -175,6 +360,8 @@ GTK4 Simple Calendar is licensed under LGPL v2.1. GTK is released under the term
 
 Active.
 
+I will add more features and improve the calendar as the project rolls along.
+
 ## Acknowledgements
 
 * [GTK](https://www.gtk.org/)
@@ -186,3 +373,6 @@ Active.
 * [GObject API](https://docs.gtk.org/gobject/index.html)
 
 * [Geany](https://www.geany.org/) is a lightweight source-code editor (version 2 now uses GTK3). [GPL v2 license](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
+
+* [Debian](https://www.debian.org/)
+

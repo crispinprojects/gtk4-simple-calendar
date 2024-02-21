@@ -1,3 +1,10 @@
+#--------------------------------------------------------------
+# Gtk4 Simple Calendar Makefile
+# Author: Alan Crispin <crispinalan@gmail.com> 
+# Date: February 2024
+# Changelog: 0.01
+#----------------------------------------------------------------
+
 CC ?= gcc
 PKGCONFIG = $(shell which pkg-config)
 CFLAGS = $(shell $(PKGCONFIG) --cflags gtk4)

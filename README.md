@@ -4,7 +4,7 @@ A simple GTK4 calendar which uses a grid of day labels for each month. It has be
 
 ![](gtk4-simple-calendar.png)
 
-GTK Simple Calendar uses Pango attributes and markup for adding some style and colour to the calendar. Pango is the text layout system used by GDK and GTK. It does not use libadwaita style classes or css for styling.
+GTK Simple Calendar now uses CSS for styling using the Gtk4 gtk_widget_add_css_class and gtk_widget_remove_css_class functions. 
 
 This is essentially the base calendar code used in my [Talk Calendar](https://github.com/crispinprojects/talkcalendar) application.
 
@@ -29,9 +29,11 @@ or double click on the "calendar" file. The calendar file must have executable p
 
 ## Build From Source
 
-The C source code for the Talk Calendar project is provided in the src directory.
+The C source code for the GTK4 Calendar project is provided in the src directory.
 
 [Geany](https://www.geany.org/) can be used as a source code editor for opening, viewing and then compiling the Calendar C code. Geany is lightweight and has an integrated terminal for building the application.
+
+### Building on Debian 12 (GNOME, Budgie Desktops), Ubuntu GNOME (22.04, 23.10 onwards) and Raspberry Pi5 OS
 
 You need the GTK4 development libraries and the gcc compiler. The code has been compiled using GTK 4.8.3 amd64 (Debian 12 Bookworm). To determine which version of GTK4 is running on a Linux system use the following terminal command.
 
@@ -42,15 +44,15 @@ dpkg -l | grep libgtk*
 With both  Debian Bookworm and Ubuntu and you need to install the following packages to compile GTK4 Simple Calendar.
 
 ```
-apt install build-essential
-apt install libgtk-4-dev
+sudo apt install build-essential
+sudo apt install libgtk-4-dev
 
 ```
 
 The package:
 
 ```
-apt install libglib2.0-dev
+sudo apt install libglib2.0-dev
 
 ```
 
@@ -337,7 +339,10 @@ custom_calendar_update(CUSTOM_CALENDAR(calendar));
 
 ## Testing
 
-I have tested GKK4 Simple Calendar using Debian 12 Xfce, Debian 12 Budgie and Debian 12 GNOME.
+I have tested GKK4 Simple Calendar using Debian 12 GNOME, Debian 12 Budgie and the latest Ubuntu.
+
+This Calendar has been developed using GTK 4.8 (Debian 12) and so does include functions that I know are going to be depreciated in GTK 4.12 and beyond. One such example is gtk_css_provider_load_from_data which is being depreciated and replaced  with gtk_css_provider_load_from_string.
+
 
 ## Versioning
 
@@ -368,3 +373,6 @@ I will add more features and improve the calendar as the project rolls along.
 * [GObject API](https://docs.gtk.org/gobject/index.html)
 
 * [Geany](https://www.geany.org/) is a lightweight source-code editor (version 2 now uses GTK3). [GPL v2 license](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
+
+* [Debian](https://www.debian.org/)
+

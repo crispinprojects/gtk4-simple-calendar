@@ -41,6 +41,11 @@ static int m_year=0;
 static int m_month=0;
 static int m_day=0;
 
+static const char* m_todaycolour="lightblue";
+static const char* m_eventcolour="lightpink";
+static const char* m_holidaycolour="lightseagreen";
+static gboolean m_frame=FALSE;
+
 const GActionEntry app_actions[] = {   
   { "home", callbk_home}
 };
@@ -52,7 +57,7 @@ const GActionEntry app_actions[] = {
 static void update_label_date(CustomCalendar *calendar, gpointer user_data){
 
 	GtkWidget *label_date = (GtkWidget *) user_data;
-	g_print("Day is : %d-%d-%d \n", m_day, m_month,m_year);
+	//g_print("Day is : %d-%d-%d \n", m_day, m_month,m_year);
 	 gchar* date_str="";
 	 gchar* weekday_str="";
 
@@ -154,6 +159,10 @@ static void callbk_calendar_next_month(CustomCalendar *calendar, gpointer user_d
 	custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
 	//now set your marks here
 	
+	custom_calendar_mark_day(CUSTOM_CALENDAR(calendar), 14);
+	//custom_calendar_reset_marks(CUSTOM_CALENDAR(calendar));
+	custom_calendar_mark_holiday(CUSTOM_CALENDAR(calendar),25);
+	
 	update_label_date(CUSTOM_CALENDAR(calendar), label_date);	
 	custom_calendar_update(CUSTOM_CALENDAR(calendar));	
 }
@@ -170,6 +179,10 @@ static void callbk_calendar_prev_month(CustomCalendar *calendar, gpointer user_d
 	custom_calendar_reset_marks(CUSTOM_CALENDAR(calendar));	
 	custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
 	//now set your marks here
+	
+	custom_calendar_mark_day(CUSTOM_CALENDAR(calendar), 14);
+	//custom_calendar_reset_marks(CUSTOM_CALENDAR(calendar));
+	custom_calendar_mark_holiday(CUSTOM_CALENDAR(calendar),25);
 	
 	update_label_date(CUSTOM_CALENDAR(calendar), label_date);	
 	custom_calendar_update(CUSTOM_CALENDAR(calendar));	
@@ -251,7 +264,7 @@ static void callbk_home(GSimpleAction * action, GVariant *parameter, gpointer us
 
 static void startup(GtkApplication *app)
 {
-	 g_print("startup  called\n");	
+	 //g_print("startup  called\n");	
 }
 
 
@@ -277,10 +290,6 @@ static void activate (GtkApplication *app, gpointer  user_data)
 	
 	//Create calendar
 	calendar = custom_calendar_new();
-	
-	g_object_set(calendar, "todaycolour", "red", NULL);
-	g_object_set(calendar, "eventcolour", "purple", NULL);
-	g_object_set(calendar, "holidaycolour", "darkgreen", NULL);
 	
 	
 	m_day = custom_calendar_get_day(CUSTOM_CALENDAR(calendar));
@@ -310,11 +319,25 @@ static void activate (GtkApplication *app, gpointer  user_data)
 	gtk_box_append(GTK_BOX(box), label_date);
 	gtk_box_append(GTK_BOX(box), calendar);
 	
-	//Testing
+//======================================================================
+//TESTING
+//======================================================================		
+	m_todaycolour="peachpuff";
+	m_eventcolour ="lightsalmon";
+	g_object_set(calendar, "todaycolour", m_todaycolour, NULL);
+	g_object_set(calendar, "eventcolour", m_eventcolour, NULL);
+	g_object_set(calendar, "holidaycolour", m_holidaycolour, NULL);	
+	
+	m_frame =TRUE;	
+	g_object_set(calendar, "frame", m_frame, NULL);	
+	
+	
 	custom_calendar_mark_day(CUSTOM_CALENDAR(calendar), 14);
 	//custom_calendar_reset_marks(CUSTOM_CALENDAR(calendar));
 	custom_calendar_mark_holiday(CUSTOM_CALENDAR(calendar),25);
 	//custom_calendar_reset_holidays(CUSTOM_CALENDAR(calendar));
+
+//======================================================================
 		
 	custom_calendar_goto_today(CUSTOM_CALENDAR(calendar));
 	custom_calendar_update(CUSTOM_CALENDAR(calendar));
